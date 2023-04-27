@@ -1,4 +1,4 @@
-package pila;
+package dinamicas;
 
 public class Pila {
 
