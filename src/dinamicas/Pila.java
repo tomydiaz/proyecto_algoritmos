@@ -8,7 +8,7 @@ public class Pila implements PilaTDA {
 		Nodo siguiente;
 	}
 	
-	Nodo primero;
+	private Nodo primero;
 	
 	public void InicializarPila() {
 		primero = null;
