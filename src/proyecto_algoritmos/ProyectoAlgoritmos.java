@@ -4,7 +4,7 @@ public class ProyectoAlgoritmos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hola manu, acabo de pushear esto, 19:39hs");
+		System.out.println("Intento 10, 2do con consola");
 	}
 
 }
