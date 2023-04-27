@@ -3,7 +3,7 @@ package dinamicas;
 import tdas.PilaTDA;
 
 public class Pila implements PilaTDA {
-	class Nodo {
+	private class Nodo {
 		int data;
 		Nodo siguiente;
 	}
