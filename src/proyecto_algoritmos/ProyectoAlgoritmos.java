@@ -47,6 +47,14 @@ public class ProyectoAlgoritmos {
 		Producto pizzaVegetariana = new Producto(5, "Pizza Vegetariana", 10);
 		Producto bebidaGaseosa = new Producto(6, "Bebida Gaseosa", 10);
 		
+		productosDisponibles.Agregar(pizzaMargarita);
+		productosDisponibles.Agregar(pizzaNapolitana);
+		productosDisponibles.Agregar(pizzaCalabresa);
+		productosDisponibles.Agregar(pizzaCuatroQuesos);
+		productosDisponibles.Agregar(pizzaVegetariana);
+		productosDisponibles.Agregar(bebidaGaseosa);
+		
+		
 		// aca abajo jugar con el sistema y probar
 		
 	}

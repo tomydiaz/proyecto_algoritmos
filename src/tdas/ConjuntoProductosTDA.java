@@ -4,10 +4,9 @@ import proyecto_algoritmos.Producto;
 
 public interface ConjuntoProductosTDA {
 	void InicializarConjunto();
-	int Elegir();
-	void Sacar(Producto producto);
+	Producto Elegir();
+	void Sacar(int id);
 	void Agregar(Producto producto);
-	boolean Pertenece(Producto producto);
+	boolean Pertenece(int id);
 	boolean ConjuntoVacio();
-
 }

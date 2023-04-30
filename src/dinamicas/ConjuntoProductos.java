@@ -1,10 +1,11 @@
 package dinamicas;
 
 import tdas.ConjuntoProductosTDA;
+import proyecto_algoritmos.Producto;
 
 public class ConjuntoProductos implements ConjuntoProductosTDA {
 	private class Nodo {
-		int data;
+		Producto producto;
 		Nodo siguiente;
 	}
 	
@@ -14,17 +15,17 @@ public class ConjuntoProductos implements ConjuntoProductosTDA {
 		inicio = null;
 	}
 	
-	public int Elegir() {
-		return inicio.data;
+	public Producto Elegir() {
+		return inicio.producto;
 	}
 	
-	public void Sacar(int x) {
+	public void Sacar(int id) {
 		if (inicio != null) {
-			if (inicio.data == x) {
+			if (inicio.producto.getId() == id) {
 				inicio = inicio.siguiente;
 			} else {
 				Nodo aux = inicio;
-				while (aux.siguiente != null && aux.siguiente.data != x) {
+				while (aux.siguiente != null && aux.siguiente.producto.getId() != id) {
 					aux = aux.siguiente;
 				}
 				if (aux.siguiente != null) {
@@ -34,18 +35,18 @@ public class ConjuntoProductos implements ConjuntoProductosTDA {
 		} 
 	}
 	
-	public void Agregar(int x) {
-		if (!this.Pertenece(x)) {
+	public void Agregar(Producto producto) {
+		if (!this.Pertenece(producto.getId())) {
 			Nodo nuevo = new Nodo();
-			nuevo.data = x;
+			nuevo.producto = producto;
 			nuevo.siguiente = inicio;
 			inicio = nuevo;
 		}
 	}
 	
-	public boolean Pertenece(int x) {
+	public boolean Pertenece(int id) {
 		Nodo aux = inicio;
-		while (aux != null && aux.data != x) {
+		while (aux != null && aux.producto.getId() != id) {
 			aux = aux.siguiente;
 		}
 		return (aux != null);
