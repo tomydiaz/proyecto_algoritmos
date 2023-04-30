@@ -1,8 +1,8 @@
 package dinamicas;
 
-import tdas.ColaTDA;
+import tdas.ColaPedidosTDA;
 
-public class Cola implements ColaTDA {
+public class ColaPedidos implements ColaPedidosTDA {
       private class Nodo {
     	  int data;
     	  Nodo siguiente;

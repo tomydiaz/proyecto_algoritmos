@@ -1,8 +1,8 @@
 package dinamicas;
 
-import tdas.PilaTDA;
+import tdas.PilaPedidosTDA;
 
-public class Pila implements PilaTDA {
+public class PilaPedidos implements PilaPedidosTDA {
 	private class Nodo {
 		int data;
 		Nodo siguiente;

@@ -1,9 +1,9 @@
 package dinamicas;
 
 import tdas.ConjuntoTDA;
-import tdas.DiccionarioSimpleTDA;
+import tdas.DiccionarioSimplePedidosTDA;
 
-public class DiccionarioSimple implements DiccionarioSimpleTDA {
+public class DiccionarioSimplePedidos implements DiccionarioSimplePedidosTDA {
 	private class NodoClave {
 		int clave;
 		int valor;
