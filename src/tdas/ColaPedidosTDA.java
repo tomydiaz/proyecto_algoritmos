@@ -7,5 +7,5 @@ public interface ColaPedidosTDA {
 	void Acolar(Pedido pedido);
 	void Desacolar();
 	boolean ColaVacia();
-	int Primero();
+	Pedido Primero();
 }

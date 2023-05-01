@@ -2,7 +2,7 @@ package proyecto_algoritmos;
 
 import java.time.LocalDateTime;
 
-import tdas.ConjuntoTDA;
+import tdas.ConjuntoProductosTDA;
 
 //Cada pedido debe incluir la siguiente información:
 // Identificador único del pedido. - LISTO
@@ -13,20 +13,20 @@ import tdas.ConjuntoTDA;
 // Estado. - LISTO
 
 public class Pedido {
-	public Pedido(int id, String nombreCliente, LocalDateTime fechaHora, ConjuntoTDA productos, String direccion, String estado) {
+	public Pedido(int id, String nombreCliente, LocalDateTime fechaHora, ConjuntoProductosTDA productos, String direccion) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.nombreCliente = nombreCliente;
 		this.fechaHora = fechaHora;
 		this.productos = productos;
 		this.direccion = direccion;
-		this.estado = estado;
+		this.estado = "Pendiente";
 	}
 	
 	private int id;
 	private String nombreCliente;
 	private LocalDateTime fechaHora; // LocalDateTime.now fechaHora = LocalDateTime.now()
-	private ConjuntoTDA productos;
+	private ConjuntoProductosTDA productos;
 	private String direccion;
 	private String estado;
 	
@@ -42,7 +42,7 @@ public class Pedido {
 		return  fechaHora;
 	}
 	
-	public ConjuntoTDA getProductos() {
+	public ConjuntoProductosTDA getProductos() {
 		return productos;
 	}
 	

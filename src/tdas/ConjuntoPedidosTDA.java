@@ -4,10 +4,10 @@ import proyecto_algoritmos.Pedido;
 
 public interface ConjuntoPedidosTDA {
 	void InicializarConjunto();
-	int Elegir();
-	void Sacar(Pedido pedido);
+	Pedido Elegir();
+	void Sacar(int id);
 	void Agregar(Pedido pedido);
-	boolean Pertenece(Pedido pedido);
+	boolean Pertenece(int id);
 	boolean ConjuntoVacio();
 
 }

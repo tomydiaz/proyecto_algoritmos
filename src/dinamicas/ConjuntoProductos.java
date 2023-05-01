@@ -50,6 +50,7 @@ public class ConjuntoProductos implements ConjuntoProductosTDA {
 			aux = aux.siguiente;
 		}
 		return (aux != null);
+		//  && aux.producto.getStock() != 0 // revisar
 	}
 	
 	public boolean ConjuntoVacio() {

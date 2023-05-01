@@ -4,8 +4,8 @@ import proyecto_algoritmos.Pedido;
 
 public interface DiccionarioSimplePedidosTDA {
 	void InicializarDiccionario();
-	void Agregar(int clave, Pedido pedidos);
+	void Agregar(Pedido pedido);
 	void Eliminar(int clave);
-	int Recuperar(int clave);
+	Pedido Recuperar(int clave);
 	ConjuntoTDA Claves();
 }

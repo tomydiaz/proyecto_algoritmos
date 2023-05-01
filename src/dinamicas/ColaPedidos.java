@@ -1,10 +1,11 @@
 package dinamicas;
 
 import tdas.ColaPedidosTDA;
+import proyecto_algoritmos.Pedido;
 
 public class ColaPedidos implements ColaPedidosTDA {
       private class Nodo {
-    	  int data;
+    	  Pedido pedido;
     	  Nodo siguiente;
       }
       
@@ -16,9 +17,9 @@ public class ColaPedidos implements ColaPedidosTDA {
     	  ultimo = null;
       }
       
-      public void Acolar(int x) {
+      public void Acolar(Pedido pedido) {
     	  Nodo nuevo = new Nodo();
-    	  nuevo.data = x;
+    	  nuevo.pedido = pedido;
     	  nuevo.siguiente = null;
     	  if (ultimo != null) {
     		  ultimo.siguiente = nuevo;
@@ -40,7 +41,7 @@ public class ColaPedidos implements ColaPedidosTDA {
     	  return ultimo == null;
       }
       
-      public int Primero() {
-    	  return primero.data;
+      public Pedido Primero() {
+    	  return primero.pedido;
       }
 }

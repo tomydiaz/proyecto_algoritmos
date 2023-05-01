@@ -1,10 +1,11 @@
 package dinamicas;
 
 import tdas.PilaPedidosTDA;
+import proyecto_algoritmos.Pedido;
 
 public class PilaPedidos implements PilaPedidosTDA {
 	private class Nodo {
-		int data;
+		Pedido pedido;
 		Nodo siguiente;
 	}
 	
@@ -14,9 +15,9 @@ public class PilaPedidos implements PilaPedidosTDA {
 		primero = null;
 	}
 	
-	public void Apilar(int x) {
+	public void Apilar(Pedido pedido) {
 		Nodo nuevo = new Nodo();
-		nuevo.data = x;
+		nuevo.pedido = pedido;
 		nuevo.siguiente = primero;
 		primero = nuevo;
 	}
@@ -28,7 +29,7 @@ public class PilaPedidos implements PilaPedidosTDA {
 		return primero == null;
 	}
 	
-	public int Tope() {
-		return primero.data;
+	public Pedido Tope() {
+		return primero.pedido;
 	}
 }

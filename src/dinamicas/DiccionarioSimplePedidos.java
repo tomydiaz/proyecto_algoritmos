@@ -1,12 +1,13 @@
 package dinamicas;
 
-import tdas.ConjuntoTDA;
 import tdas.DiccionarioSimplePedidosTDA;
+import proyecto_algoritmos.Pedido;
+import tdas.ConjuntoTDA;
 
 public class DiccionarioSimplePedidos implements DiccionarioSimplePedidosTDA {
 	private class NodoClave {
 		int clave;
-		int valor;
+		Pedido pedido;
 		NodoClave siguiente;
 	}
 	
@@ -16,15 +17,15 @@ public class DiccionarioSimplePedidos implements DiccionarioSimplePedidosTDA {
 		inicio = null;
 	}
 	
-	public void Agregar(int clave, int valor) {
-		NodoClave nodo = ObtenerNodoClave(clave);
+	public void Agregar(Pedido pedido) {
+		NodoClave nodo = ObtenerNodoClave(pedido.getId());
 		if (nodo == null) {
 			nodo = new NodoClave();
-			nodo.clave = clave;
+			nodo.clave = pedido.getId();
 			nodo.siguiente = inicio;
 			inicio = nodo;
 		}
-		nodo.valor = valor;
+		nodo.pedido = pedido;
 	}
 	
 	private NodoClave ObtenerNodoClave(int clave) {
@@ -51,9 +52,9 @@ public class DiccionarioSimplePedidos implements DiccionarioSimplePedidosTDA {
 		}
 	}
 	
-	public int Recuperar(int clave) {
+	public Pedido Recuperar(int clave) {
 		NodoClave nodo = ObtenerNodoClave(clave);
-		return nodo.valor;
+		return nodo.pedido;
 	}
 	
 	public ConjuntoTDA Claves() {

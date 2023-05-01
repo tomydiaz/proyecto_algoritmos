@@ -7,5 +7,5 @@ public interface PilaPedidosTDA {
 	void Apilar(Pedido pedido);
 	void Desapilar();
 	boolean PilaVacia();
-	int Tope();
+	Pedido Tope();
 }

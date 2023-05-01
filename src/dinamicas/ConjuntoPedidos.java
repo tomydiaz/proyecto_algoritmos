@@ -1,10 +1,11 @@
 package dinamicas;
 
 import tdas.ConjuntoPedidosTDA;
+import proyecto_algoritmos.Pedido;
 
 public class ConjuntoPedidos implements ConjuntoPedidosTDA {
 	private class Nodo {
-		int data;
+		Pedido pedido;
 		Nodo siguiente;
 	}
 	
@@ -14,17 +15,17 @@ public class ConjuntoPedidos implements ConjuntoPedidosTDA {
 		inicio = null;
 	}
 	
-	public int Elegir() {
-		return inicio.data;
+	public Pedido Elegir() {
+		return inicio.pedido;
 	}
 	
-	public void Sacar(int x) {
+	public void Sacar(int id) {
 		if (inicio != null) {
-			if (inicio.data == x) {
+			if (inicio.pedido.getId() == id) {
 				inicio = inicio.siguiente;
 			} else {
 				Nodo aux = inicio;
-				while (aux.siguiente != null && aux.siguiente.data != x) {
+				while (aux.siguiente != null && aux.siguiente.pedido.getId() != id) {
 					aux = aux.siguiente;
 				}
 				if (aux.siguiente != null) {
@@ -34,18 +35,18 @@ public class ConjuntoPedidos implements ConjuntoPedidosTDA {
 		} 
 	}
 	
-	public void Agregar(int x) {
-		if (!this.Pertenece(x)) {
+	public void Agregar(Pedido pedido) {
+		if (!this.Pertenece(pedido.getId())) {
 			Nodo nuevo = new Nodo();
-			nuevo.data = x;
+			nuevo.pedido = pedido;
 			nuevo.siguiente = inicio;
 			inicio = nuevo;
 		}
 	}
 	
-	public boolean Pertenece(int x) {
+	public boolean Pertenece(int id) {
 		Nodo aux = inicio;
-		while (aux != null && aux.data != x) {
+		while (aux != null && aux.pedido.getId() != id) {
 			aux = aux.siguiente;
 		}
 		return (aux != null);
