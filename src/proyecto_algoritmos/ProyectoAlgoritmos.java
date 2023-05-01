@@ -114,7 +114,7 @@ public class ProyectoAlgoritmos {
 
 		// ver si esto se unifica o que onda (INICIO)
 		int[] idsProductos = { 1, 1, 2, 3, 4 }; // no se estan agregando repetidos, leer arriba
-		Pedido nuevoPedido = crearPedido(20, "tomas diaz", LocalDateTime.now(), idsProductos, "Copacabana 183",
+		Pedido nuevoPedido = crearPedido(20, "Tomas Diaz", LocalDateTime.now(), idsProductos, "Copacabana 183",
 				productosDisponibles);
 		pedidosPendientes.Acolar(nuevoPedido);
 		historialPedidos.Agregar(nuevoPedido);
