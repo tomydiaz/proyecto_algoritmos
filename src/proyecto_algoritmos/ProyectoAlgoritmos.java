@@ -44,10 +44,11 @@ public class ProyectoAlgoritmos {
 
 	static public void pasarPedidoAPreparacion(ColaPedidosTDA pedidosPendientes, ConjuntoPedidosTDA pedidosEnPreparacion) {
 		Pedido miPedido = pedidosPendientes.Primero();
-		pedidosPendientes.Desacolar();
-		miPedido.actualizarEstado("En Preparacion");
-		pedidosEnPreparacion.Agregar(miPedido);
-		
+		if (miPedido != null) {
+			pedidosPendientes.Desacolar();
+			miPedido.actualizarEstado("En Preparacion");
+			pedidosEnPreparacion.Agregar(miPedido);
+		}
 	}
 	
 	static public void pasarPedidoACompletado(int id, ConjuntoPedidosTDA pedidosEnPreparacion, PilaPedidosTDA pedidosCompletados) {
