@@ -13,9 +13,11 @@ import tdas.ConjuntoProductosTDA;
 // Estado. - LISTO
 
 public class Pedido {
-	public Pedido(int id, String nombreCliente, LocalDateTime fechaHora, ConjuntoProductosTDA productos, String direccion) {
+	static int generador = 1;
+	
+	public Pedido(String nombreCliente, LocalDateTime fechaHora, ConjuntoProductosTDA productos, String direccion) {
 		// TODO Auto-generated constructor stub
-		this.id = id;
+		this.id = generador++;
 		this.nombreCliente = nombreCliente;
 		this.fechaHora = fechaHora;
 		this.productos = productos;

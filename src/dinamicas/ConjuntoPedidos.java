@@ -11,12 +11,16 @@ public class ConjuntoPedidos implements ConjuntoPedidosTDA {
 	
 	private Nodo inicio;
 	
+	
 	public void InicializarConjunto() {
 		inicio = null;
 	}
 	
 	public Pedido Elegir() {
-		return inicio.pedido;
+		if (inicio != null) {
+  		  return inicio.pedido;
+  	  	}
+  	  	return null;
 	}
 	
 	public void Sacar(int id) {

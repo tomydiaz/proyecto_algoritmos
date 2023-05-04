@@ -16,7 +16,10 @@ public class ConjuntoProductos implements ConjuntoProductosTDA {
 	}
 	
 	public Producto Elegir() {
-		return inicio.producto;
+		if (inicio != null) {
+  		  return inicio.producto;
+  	  	}
+  	  	return null;
 	}
 	
 	public void Sacar(int id) {

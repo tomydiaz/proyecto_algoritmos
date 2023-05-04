@@ -30,6 +30,10 @@ public class PilaPedidos implements PilaPedidosTDA {
 	}
 	
 	public Pedido Tope() {
-		return primero.pedido;
+		if (primero != null) {
+			return primero.pedido;
+		}
+		return null;
+		
 	}
 }

@@ -54,7 +54,10 @@ public class DiccionarioSimplePedidos implements DiccionarioSimplePedidosTDA {
 	
 	public Pedido Recuperar(int clave) {
 		NodoClave nodo = ObtenerNodoClave(clave);
-		return nodo.pedido;
+		if (nodo != null) {
+			return nodo.pedido;
+  	  	}
+  	  	return null;
 	}
 	
 	public ConjuntoTDA Claves() {

@@ -42,6 +42,10 @@ public class ColaPedidos implements ColaPedidosTDA {
       }
       
       public Pedido Primero() {
-    	  return primero.pedido;
+    	  if (primero != null) {
+    		  return primero.pedido;
+    	  }
+    	  return null;
+    	  
       }
 }
