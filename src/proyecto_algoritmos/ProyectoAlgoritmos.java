@@ -12,8 +12,12 @@ public class ProyectoAlgoritmos {
 		
 		int[] idsProductos = { 1, 2, 3, 4 }; // no se estan agregando repetidos, leer arriba
 		Pedido pedido = sistema.crearPedido("Tomas Diaz", LocalDateTime.now(), idsProductos, "Copacabana 183");
+		
 		sistema.pasarPedidoAPreparacion();
+		
 		sistema.pasarPedidoACompletado(pedido.getId());
+		
+		System.out.println(pedido.getId());
 	}
 
 }
