@@ -79,7 +79,7 @@ public class SistemaPizzeria {
 		}
 	}
 
-	
+	 
 	public static void main(String[] args) {
 		
 		pedidosPendientes.InicializarCola();
