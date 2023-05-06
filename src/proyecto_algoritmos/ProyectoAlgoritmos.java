@@ -1,13 +1,12 @@
 package proyecto_algoritmos;
 
 import java.time.LocalDateTime;
-
-// ver pedidos con productos repetidos // clase productocantidad atributos: Producto, int cantidad (prioridad alta)
+import dinamicas.ConjuntoPedidos;
+import tdas.ConjuntoPedidosTDA;
 
 public class ProyectoAlgoritmos {
 	public static void main(String[] args) {
 		// Escenario: Pizzería
-		
 		
 		SistemaPizzeria sistema = new SistemaPizzeria();
 		
@@ -28,5 +27,11 @@ public class ProyectoAlgoritmos {
 		sistema.pasarPedidoACompletado(pedido.getId()); // Pasando uno en especifico de preparacion a completado
 		
 		/* aca ver que productos se agregaron */
+		
+		ConjuntoPedidosTDA conjuntoPrueba = new ConjuntoPedidos();
+		ConjuntoPedidosTDA conjuntoClonado = conjuntoPrueba.Copiar(); // usar esto // usarlo asi o crear funcion que reciba conjunto? esto para no modificar el tda de ConjuntoPedidos
+		conjuntoPrueba.Agregar(pedido);
+		System.out.println(conjuntoPrueba.ConjuntoVacio());
+		System.out.println(conjuntoClonado.ConjuntoVacio());
 	}
 }

@@ -68,6 +68,7 @@ public class SistemaPizzeria {
 		
 		while(!productosDisponibles.ConjuntoVacio()) { // por cada producto disponible en el menu itero
 			
+			
 			Producto aux = productosDisponibles.Elegir(); // elijo un producto del menu
 			int cantidad = 0; // inicializo una cantidad
 			for (int idProducto : idsProductos) { // por cada elemento de la lista de productos elegidos, comparo
