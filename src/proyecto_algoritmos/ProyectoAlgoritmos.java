@@ -3,21 +3,30 @@ package proyecto_algoritmos;
 import java.time.LocalDateTime;
 
 // ver pedidos con productos repetidos // clase productocantidad atributos: Producto, int cantidad (prioridad alta)
-// ver como acceder a propiedad de SistemaPizzeria sin poder modificarlo - Gonza clase lunes - POO
 
 public class ProyectoAlgoritmos {
 	public static void main(String[] args) {
 		// Escenario: Pizzería
+		
+		
 		SistemaPizzeria sistema = new SistemaPizzeria();
 		
-		int[] idsProductos = { 1, 2, 3, 4 }; // no se estan agregando repetidos, leer arriba
-		Pedido pedido = sistema.crearPedido("Tomas Diaz", LocalDateTime.now(), idsProductos, "Copacabana 183");
+		int[] idsProductos = { 1,1,2,3,4 };
 		
-		sistema.pasarPedidoAPreparacion();
+		Pedido pedido = sistema.crearPedido("Tomas Diaz", LocalDateTime.now(), idsProductos, "Copacabana 183"); // Creando pedido y poniendolo como pendiente
 		
-		sistema.pasarPedidoACompletado(pedido.getId());
+		int[] idsProductos2 = { 1,1,1,1,6 };
 		
-		System.out.println(pedido.getId());
+		Pedido pedido2 = sistema.crearPedido("Tomas Diaz", LocalDateTime.now(), idsProductos2, "Copacabana 183"); // Creando pedido y poniendolo como pendiente
+		
+		int[] idsProductos3 = { 1,1,2,2,3,3,4,4,5,5,6,6};
+		
+		Pedido pedido3 = sistema.crearPedido("Tomas Diaz", LocalDateTime.now(), idsProductos3, "Copacabana 183"); // Creando pedido y poniendolo como pendiente
+		
+		sistema.pasarPedidoAPreparacion(); // Pasando el siguiente pendiente a preparacion
+		
+		sistema.pasarPedidoACompletado(pedido.getId()); // Pasando uno en especifico de preparacion a completado
+		
+		/* aca ver que productos se agregaron */
 	}
-	// LINEA PARA PROBAR EL PUSHH
 }
