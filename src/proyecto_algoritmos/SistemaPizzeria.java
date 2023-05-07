@@ -92,7 +92,7 @@ public class SistemaPizzeria {
 		return pedido;
 	}
 	
-	public void pasarPedidoAPreparacion() {
+	public Pedido pasarPedidoAPreparacion() {
 		Pedido miPedido = pedidosPendientes.Primero();
 		if (miPedido != null) {
 			System.out.println("Pasando a preparacion el pedido - id: " + miPedido.getId());
@@ -100,6 +100,7 @@ public class SistemaPizzeria {
 			miPedido.actualizarEstado("En Preparacion");
 			pedidosEnPreparacion.Agregar(miPedido);
 		}
+		return miPedido;
 	}
 	
 	public void pasarPedidoACompletado(int id){
