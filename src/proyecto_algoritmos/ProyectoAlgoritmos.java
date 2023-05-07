@@ -20,12 +20,10 @@ public class ProyectoAlgoritmos {
 		
 		Pedido pedido2 = sistema.crearPedido(2, "Tomas2 Diaz2", LocalDateTime.now(), idsProductos2, "Copacabana 2"); // Creando pedido y poniendolo como pendiente
 		
-		
 		sistema.pasarPedidoAPreparacion(); // Pasando el siguiente pedido pendiente a preparacion
 		
 		sistema.pasarPedidoACompletado(pedido.getId()); // Pasando uno en especifico de preparacion a completado
 	
-		
 		int[] idsProductos3 = { 1,1,2,2,3,3,4,4,5,5,6,6};
 		
 		Pedido pedido3 = sistema.crearPedido(3, "Tomas3 Diaz3", LocalDateTime.now(), idsProductos3, "Copacabana 3"); // Creando pedido y poniendolo como pendiente
