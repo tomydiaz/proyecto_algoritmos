@@ -18,20 +18,20 @@ import tdas.PilaPedidosTDA;
 
 public class SistemaPizzeria {
 	
-	private static ColaPedidosTDA pedidosPendientes = new ColaPedidos(); 
-	private static ConjuntoPedidosTDA pedidosEnPreparacion = new ConjuntoPedidos();
-	private static PilaPedidosTDA pedidosCompletados = new PilaPedidos(); 
+	public static ColaPedidosTDA pedidosPendientes = new ColaPedidos(); 
+	public static ConjuntoPedidosTDA pedidosEnPreparacion = new ConjuntoPedidos();
+	public static PilaPedidosTDA pedidosCompletados = new PilaPedidos(); 
 	private static DiccionarioSimplePedidosTDA historialPedidos = new DiccionarioSimplePedidos();
 	private static ConjuntoProductosTDA productosDisponibles = new ConjuntoProductos();
 	
 	public SistemaPizzeria() {
-		System.out.println("Inicializando conjuntos, pilas, colas y diccionarios");
+		// System.out.println("Inicializando conjuntos, pilas, colas y diccionarios");
 		pedidosPendientes.InicializarCola();
 		pedidosEnPreparacion.InicializarConjunto();
 		pedidosCompletados.InicializarPila();
 		historialPedidos.InicializarDiccionario();
 		productosDisponibles.InicializarConjunto();
-		System.out.println("Todo inicializado");
+		// System.out.println("Todo inicializado");
 		
 		
 		// aca creamos los productos del menu
@@ -42,7 +42,7 @@ public class SistemaPizzeria {
 		Producto pizzaVegetariana = new Producto(5, "Pizza Vegetariana");
 		Producto bebidaGaseosa = new Producto(6, "Bebida Gaseosa");
 
-		// aca lo agregamos al menu
+		// aca los agregamos al menu
 		productosDisponibles.Agregar(pizzaMargarita);
 		productosDisponibles.Agregar(pizzaNapolitana);
 		productosDisponibles.Agregar(pizzaCalabresa);
@@ -52,24 +52,18 @@ public class SistemaPizzeria {
 		
 	}
 	
-	public Pedido crearPedido(String nombreCliente, LocalDateTime fechaHora, int[] idsProductos,
+	public Pedido crearPedido(int id, String nombreCliente, LocalDateTime fechaHora, int[] idsProductos,
 			String direccion) {
-
-		System.out.println("Creando pedido...");
-		ConjuntoProductosTDA auxProductosDisponibles = new ConjuntoProductos();
-		auxProductosDisponibles.InicializarConjunto();
+		
+		ConjuntoProductosTDA copiaProductosDisponibles = copiarConjuntoProductos(productosDisponibles);
+		
 		ConjuntoProductosCantidadTDA misProductos = new ConjuntoProductosCantidad();
 		misProductos.InicializarConjunto();
 		
+		System.out.println("Pedido numero " + id);
 		
-		System.out.println("Menu vacio: " + productosDisponibles.ConjuntoVacio());
-		
-		System.out.println("A punto de entrar al while (crearPedido)");
-		
-		while(!productosDisponibles.ConjuntoVacio()) { // por cada producto disponible en el menu itero
-			
-			
-			Producto aux = productosDisponibles.Elegir(); // elijo un producto del menu
+		while(!copiaProductosDisponibles.ConjuntoVacio()) { // por cada producto disponible en el menu itero
+			Producto aux = copiaProductosDisponibles.Elegir(); // elijo un producto del menu
 			int cantidad = 0; // inicializo una cantidad
 			for (int idProducto : idsProductos) { // por cada elemento de la lista de productos elegidos, comparo
 				if (aux.getId() == idProducto) { // si encuentra coincidencia, suma 1, esto es lo que permite repetidos
@@ -80,28 +74,19 @@ public class SistemaPizzeria {
 			System.out.println("Agregue " + cantidad + " " + aux.getNombre()); // que agregue al pedido? que cantidad?
 			
 			ProductoCantidad productoCantidad = new ProductoCantidad(aux, cantidad); // crea el producto con su respectiva cantidad
+			misProductos.Agregar(productoCantidad);
 			
-			misProductos.Agregar(productoCantidad); // agrega el producto + cantindad al conjunto de mis productos cantidad
-			
-			auxProductosDisponibles.Agregar(aux); // agrega el producto original del menu al conjunto auxiliar para no perder la informacion de ese producto
-			productosDisponibles.Sacar(aux.getId()); // saca ese producto original del conjunto original para seguir iterando con un producto diferente
+			copiaProductosDisponibles.Sacar(aux.getId());
 		}
 		
-		System.out.println("Productos disponibles vacio? (deberia ser true, esto es antes de reasignarlo): " + productosDisponibles.ConjuntoVacio());
-		productosDisponibles = auxProductosDisponibles;
-		System.out.println("Productos disponibles vacio? (deberia ser false, esto es despues de reasignarlo): " + productosDisponibles.ConjuntoVacio());
 		
-		System.out.println("Acaba de terminar el while (crear pedido)");
-		
-		 // sobreescribe el conjunto original con el auxiliar para no perder los productos disponibles
-		
-		Pedido pedido = new Pedido(nombreCliente, fechaHora, misProductos, direccion); 
-		
+		Pedido pedido = new Pedido(id, nombreCliente, fechaHora, misProductos, direccion); 
 		pedidosPendientes.Acolar(pedido);
 		historialPedidos.Agregar(pedido);
+		
 		return pedido;
 	}
-
+	
 	public void pasarPedidoAPreparacion() {
 		Pedido miPedido = pedidosPendientes.Primero();
 		if (miPedido != null) {
@@ -112,29 +97,69 @@ public class SistemaPizzeria {
 	}
 	
 	public void pasarPedidoACompletado(int id){
-		ConjuntoPedidosTDA auxPedidosEnPreparacion = new ConjuntoPedidos();
-		auxPedidosEnPreparacion.InicializarConjunto();
-		Pedido aux = pedidosEnPreparacion.Elegir();
+		ConjuntoPedidosTDA copiaPedidosEnPreparacion = copiarConjuntoPedidos(pedidosEnPreparacion);
 		
-		while (aux != null) {
-			if (aux.getId() == id) {
-				// caso positivo, encontrado		
-				aux.actualizarEstado("Completado");
-				pedidosCompletados.Apilar(aux);
-			} else {
-				// caso negativo, no encontrado	
-				auxPedidosEnPreparacion.Agregar(aux);
-			}
-			pedidosEnPreparacion.Sacar(aux.getId());
-			aux = pedidosEnPreparacion.Elegir();
-		}
-		
-		aux = auxPedidosEnPreparacion.Elegir();
-		while (aux != null) {
-			pedidosEnPreparacion.Agregar(aux);
-			auxPedidosEnPreparacion.Sacar(aux.getId());
-			aux = auxPedidosEnPreparacion.Elegir();
-		}
-	}
+		Pedido aux = copiaPedidosEnPreparacion.Elegir();
 
+		while (aux != null && aux.getId() != id) {
+			copiaPedidosEnPreparacion.Sacar(aux.getId());
+			aux = copiaPedidosEnPreparacion.Elegir();
+		}
+		
+		if (aux != null && aux.getId() == id) {
+			aux.actualizarEstado("Completado");
+			pedidosEnPreparacion.Sacar(aux.getId());
+			pedidosCompletados.Apilar(aux);
+			System.out.println("Lo encontre y lo pase a completado - id: " + id);
+		} else {
+			System.out.println("No lo encontre - id: " + id);
+		}
+		
+	}
+	
+	private ConjuntoProductosTDA copiarConjuntoProductos(ConjuntoProductosTDA conjuntoProductos) {
+		ConjuntoProductosTDA copia = new ConjuntoProductos();
+		copia.InicializarConjunto();
+		
+		ConjuntoProductosTDA conjuntoAuxiliar = new ConjuntoProductos();
+		conjuntoAuxiliar.InicializarConjunto();
+		
+		while (!conjuntoProductos.ConjuntoVacio()) {
+			Producto aux = conjuntoProductos.Elegir();
+			copia.Agregar(aux);
+			conjuntoAuxiliar.Agregar(aux);
+			conjuntoProductos.Sacar(aux.getId());
+		}
+		
+		while (!conjuntoAuxiliar.ConjuntoVacio()) {
+			Producto aux = conjuntoAuxiliar.Elegir();
+			conjuntoProductos.Agregar(aux);
+			conjuntoAuxiliar.Sacar(aux.getId());
+		}
+		
+		return copia;
+	}
+	
+	private ConjuntoPedidosTDA copiarConjuntoPedidos(ConjuntoPedidosTDA conjuntoPedidos) {
+		ConjuntoPedidosTDA copia = new ConjuntoPedidos();
+		copia.InicializarConjunto();
+		
+		ConjuntoPedidosTDA conjuntoAuxiliar = new ConjuntoPedidos();
+		conjuntoAuxiliar.InicializarConjunto();
+		
+		while (!conjuntoPedidos.ConjuntoVacio()) {
+			Pedido aux = conjuntoPedidos.Elegir();
+			copia.Agregar(aux);
+			conjuntoAuxiliar.Agregar(aux);
+			conjuntoPedidos.Sacar(aux.getId());
+		}
+		
+		while (!conjuntoAuxiliar.ConjuntoVacio()) {
+			Pedido aux = conjuntoAuxiliar.Elegir();
+			conjuntoPedidos.Agregar(aux);
+			conjuntoAuxiliar.Sacar(aux.getId());
+		}
+		
+		return copia;
+	}
 }

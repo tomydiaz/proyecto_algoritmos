@@ -9,5 +9,4 @@ public interface ConjuntoPedidosTDA {
 	void Agregar(Pedido pedido);
 	boolean Pertenece(int id);
 	boolean ConjuntoVacio();
-	ConjuntoPedidosTDA Copiar();
 }

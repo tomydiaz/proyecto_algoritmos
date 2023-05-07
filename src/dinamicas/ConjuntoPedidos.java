@@ -11,20 +11,6 @@ public class ConjuntoPedidos implements ConjuntoPedidosTDA {
 	
 	private Nodo inicio;
 	
-	
-	public ConjuntoPedidosTDA Copiar() {
-		
-		ConjuntoPedidosTDA clon = new ConjuntoPedidos();
-		
-		Nodo aux = inicio;
-		while (aux != null) {
-			clon.Agregar(aux.pedido);
-			aux = aux.siguiente;
-		}
-
-		return clon;
-	}
-	
 	public void InicializarConjunto() {
 		inicio = null;
 	}

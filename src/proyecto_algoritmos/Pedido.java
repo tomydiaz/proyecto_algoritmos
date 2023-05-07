@@ -5,11 +5,10 @@ import java.time.LocalDateTime;
 import tdas.ConjuntoProductosCantidadTDA;
 
 public class Pedido {
-	static int generador = 1;
 	
-	public Pedido(String nombreCliente, LocalDateTime fechaHora, ConjuntoProductosCantidadTDA productosCantidad, String direccion) {
+	public Pedido(int id, String nombreCliente, LocalDateTime fechaHora, ConjuntoProductosCantidadTDA productosCantidad, String direccion) {
 		// TODO Auto-generated constructor stub
-		this.id = generador++;
+		this.id = id;
 		this.nombreCliente = nombreCliente;
 		this.fechaHora = fechaHora;
 		this.productosCantidad = productosCantidad;
