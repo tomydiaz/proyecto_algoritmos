@@ -60,8 +60,6 @@ public class SistemaPizzeria {
 		ConjuntoProductosCantidadTDA misProductos = new ConjuntoProductosCantidad();
 		misProductos.InicializarConjunto();
 		
-		
-		
 		System.out.println("Creando el pedido numero " + id);
 		System.out.print("Productos: ");
 		
@@ -74,12 +72,15 @@ public class SistemaPizzeria {
 				}
 			}
 			
-			System.out.print(cantidad + " " + aux.getNombre() + ", "); // que agregue al pedido? que cantidad?
-			
+			System.out.print(cantidad + " " + aux.getNombre()); // que agregue al pedido? que cantidad?
 			
 			ProductoCantidad productoCantidad = new ProductoCantidad(aux, cantidad); // crea el producto con su respectiva cantidad
 			misProductos.Agregar(productoCantidad);
 			copiaProductosDisponibles.Sacar(aux.getId());
+			
+			if (!copiaProductosDisponibles.ConjuntoVacio()) {
+				System.out.print(", "); // estetico
+			}
 		}
 		System.out.println();
 		
@@ -164,5 +165,9 @@ public class SistemaPizzeria {
 		}
 		
 		return copia;
+	}
+
+	public DiccionarioSimplePedidosTDA getHistorialPedidos() {
+		return historialPedidos;
 	}
 }

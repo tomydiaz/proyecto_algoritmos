@@ -10,6 +10,8 @@ public class ProyectoAlgoritmos {
 		
 		SistemaPizzeria sistema = new SistemaPizzeria();
 		
+		// prubas de escritorio
+		
 		int[] idsProductos = { 1,1,2,3,4 };
 		
 		Pedido pedido = sistema.crearPedido(1, "Tomas Diaz", LocalDateTime.now(), idsProductos, "Copacabana 1"); // Creando pedido y poniendolo como pendiente
@@ -19,7 +21,7 @@ public class ProyectoAlgoritmos {
 		Pedido pedido2 = sistema.crearPedido(2, "Tomas2 Diaz2", LocalDateTime.now(), idsProductos2, "Copacabana 2"); // Creando pedido y poniendolo como pendiente
 		
 		
-		sistema.pasarPedidoAPreparacion(); // Pasando el siguiente pendiente a preparacion
+		sistema.pasarPedidoAPreparacion(); // Pasando el siguiente pedido pendiente a preparacion
 		
 		sistema.pasarPedidoACompletado(pedido.getId()); // Pasando uno en especifico de preparacion a completado
 	
@@ -28,9 +30,9 @@ public class ProyectoAlgoritmos {
 		
 		Pedido pedido3 = sistema.crearPedido(3, "Tomas3 Diaz3", LocalDateTime.now(), idsProductos3, "Copacabana 3"); // Creando pedido y poniendolo como pendiente
 		
-		sistema.pasarPedidoAPreparacion();// Pasando el siguiente pendiente a preparacion
+		sistema.pasarPedidoAPreparacion();// Pasando el siguiente pedido pendiente a preparacion
 		
-		sistema.pasarPedidoAPreparacion(); // Pasando el siguiente pendiente a preparacion
+		sistema.pasarPedidoAPreparacion(); // Pasando el siguiente pedido pendiente a preparacion
 		
 		sistema.pasarPedidoACompletado(pedido2.getId());
 		
@@ -42,6 +44,8 @@ public class ProyectoAlgoritmos {
 		
 		Pedido pedido5 = sistema.crearPedido(5, "Tomas4 Diaz5", LocalDateTime.now(), idsProductos5, "Copacabana 5"); // Creando pedido y poniendolo como pendiente
 		
+		sistema.pasarPedidoAPreparacion();
+		
 		int[] idsProductos6 = { 1,1,2,2,3,3,4,4,5,5,6,6};
 		
 		Pedido pedido6 = sistema.crearPedido(6, "Tomas4 Diaz6", LocalDateTime.now(), idsProductos5, "Copacabana 6");
@@ -49,6 +53,10 @@ public class ProyectoAlgoritmos {
 		sistema.pasarPedidoACompletado(pedido3.getId());
 		
 		sistema.pasarPedidoACompletado(20);
+		
+		Pedido pedidoRecuperado = sistema.getHistorialPedidos().Recuperar(pedido4.getId());
+		
+		System.out.println(pedidoRecuperado.getEstado());
 		
 	}
 }
