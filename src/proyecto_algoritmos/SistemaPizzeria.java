@@ -18,9 +18,9 @@ import tdas.PilaPedidosTDA;
 
 public class SistemaPizzeria {
 	
-	public static ColaPedidosTDA pedidosPendientes = new ColaPedidos(); 
-	public static ConjuntoPedidosTDA pedidosEnPreparacion = new ConjuntoPedidos();
-	public static PilaPedidosTDA pedidosCompletados = new PilaPedidos(); 
+	private static ColaPedidosTDA pedidosPendientes = new ColaPedidos(); 
+	private static ConjuntoPedidosTDA pedidosEnPreparacion = new ConjuntoPedidos();
+	private static PilaPedidosTDA pedidosCompletados = new PilaPedidos(); 
 	private static DiccionarioSimplePedidosTDA historialPedidos = new DiccionarioSimplePedidos();
 	private static ConjuntoProductosTDA productosDisponibles = new ConjuntoProductos();
 	
@@ -60,7 +60,10 @@ public class SistemaPizzeria {
 		ConjuntoProductosCantidadTDA misProductos = new ConjuntoProductosCantidad();
 		misProductos.InicializarConjunto();
 		
-		System.out.println("Pedido numero " + id);
+		
+		
+		System.out.println("Creando el pedido numero " + id);
+		System.out.print("Productos: ");
 		
 		while(!copiaProductosDisponibles.ConjuntoVacio()) { // por cada producto disponible en el menu itero
 			Producto aux = copiaProductosDisponibles.Elegir(); // elijo un producto del menu
@@ -71,13 +74,14 @@ public class SistemaPizzeria {
 				}
 			}
 			
-			System.out.println("Agregue " + cantidad + " " + aux.getNombre()); // que agregue al pedido? que cantidad?
+			System.out.print(cantidad + " " + aux.getNombre() + ", "); // que agregue al pedido? que cantidad?
+			
 			
 			ProductoCantidad productoCantidad = new ProductoCantidad(aux, cantidad); // crea el producto con su respectiva cantidad
 			misProductos.Agregar(productoCantidad);
-			
 			copiaProductosDisponibles.Sacar(aux.getId());
 		}
+		System.out.println();
 		
 		
 		Pedido pedido = new Pedido(id, nombreCliente, fechaHora, misProductos, direccion); 
@@ -90,6 +94,7 @@ public class SistemaPizzeria {
 	public void pasarPedidoAPreparacion() {
 		Pedido miPedido = pedidosPendientes.Primero();
 		if (miPedido != null) {
+			System.out.println("Pasando a preparacion el pedido - id: " + miPedido.getId());
 			pedidosPendientes.Desacolar();
 			miPedido.actualizarEstado("En Preparacion");
 			pedidosEnPreparacion.Agregar(miPedido);
@@ -110,9 +115,7 @@ public class SistemaPizzeria {
 			aux.actualizarEstado("Completado");
 			pedidosEnPreparacion.Sacar(aux.getId());
 			pedidosCompletados.Apilar(aux);
-			System.out.println("Lo encontre y lo pase a completado - id: " + id);
-		} else {
-			System.out.println("No lo encontre - id: " + id);
+			System.out.println("Pase a completado el pedido - id: " + id);
 		}
 		
 	}
