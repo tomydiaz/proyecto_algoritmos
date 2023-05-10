@@ -52,9 +52,13 @@ public class ProyectoAlgoritmos {
 		
 		sistema.pasarPedidoACompletado(20);
 		
-		Pedido pedidoRecuperado = sistema.getHistorialPedidos().Recuperar(pedido4.getId());
+		//
 		
-		System.out.println(pedidoRecuperado.getEstado());
+		Pedido pedidoRecuperado = sistema.getHistorialPedidos().Recuperar(pedido3.getId());
+		
+		int idPedido = pedidoRecuperado.getId();
+		
+		System.out.println("Estado del pedido Nro " + idPedido + ": " + pedidoRecuperado.getEstado());
 		
 	}
 }
